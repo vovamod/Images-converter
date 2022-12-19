@@ -15,7 +15,6 @@
 
 
 ##Installation
-
 ---
 1. Open cmd and paste this command: `pip install wand progress`
 2. Go to the [Magick Wand website](https://bit.ly/MGinstL) and install the latest version of their software
@@ -23,7 +22,6 @@
 
 
 ##Usage
-
 ---
 * Create a folder named "DDS" right next to decompiler.py
 * Then put all of the files that you want to convert in that folder
