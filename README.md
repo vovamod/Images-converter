@@ -12,12 +12,16 @@
 * 100% conversation of files to PNG format
 * Manageable code for personal use
 * Sub version with multiprocessing (will be available soon)
+
+
 ##Installation
 
 ---
 1. Open cmd and paste this command: `pip install wand progress`
 2. Go to the [Magick Wand website](https://bit.ly/MGinstL) and install the latest version of their software
 3. Afterwards launch decompiler.py
+
+
 ##Usage
 
 ---
