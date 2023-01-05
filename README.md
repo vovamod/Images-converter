@@ -4,7 +4,6 @@
 ---
 ![GitHub repo size](https://img.shields.io/github/repo-size/vovamod/DDS-to-PNG)
 ![GitHub](https://img.shields.io/github/license/vovamod/DDS-to-PNG)
-![LGTM Grade](https://img.shields.io/lgtm/grade/python/github/vovamod/DDS-to-PNG)
 ![GitHub last commit](https://img.shields.io/github/last-commit/vovamod/DDS-to-PNG)
 ## Features
 
