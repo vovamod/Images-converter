@@ -1,4 +1,4 @@
-# DDS to PNG
+# DDS converter
 ### Created by vovamod. Fully automated converter from DDS to PNG files
 
 ---
@@ -8,20 +8,19 @@
 ## Features
 
 * Automatic folder generaion
-* 100% conversation of files to PNG format
+* 100% conversation of files to PNG/BMP/BLP/DIB/EPS/TIFF/PPM/JPEG format (can be setuped in cfg.py)
 * Manageable code for personal use
 * Sub version with multiprocessing (will be available soon)
 
 
 Installation
 ---
-1. Open cmd and paste this command: `pip install wand progress`
-2. Go to the [Magick Wand website](https://bit.ly/MGinstL) and install the latest version of their software
-3. Afterwards launch decompiler.py
+1. Open cmd and paste this command: `pip install PIL`
+2. Afterwards launch converter.py
 
 
 Usage
 ---
-* Create a folder named "DDS" right next to decompiler.py
+* Create a folder named "DDS" (or any other which you will use for file conversion) right next to converter.py
 * Then put all of the files that you want to convert in that folder
-* Launch decompiler.py and wait (you will see progress bar which will tell you when the process is done)
+* Launch converter.py and wait (you will see progress bar which will tell you when the process is done)
