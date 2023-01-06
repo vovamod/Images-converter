@@ -2,9 +2,9 @@
 ### Created by vovamod. Fully automated converter from DDS to PNG files
 
 ---
-![GitHub repo size](https://img.shields.io/github/repo-size/vovamod/DDS-to-PNG)
-![GitHub](https://img.shields.io/github/license/vovamod/DDS-to-PNG)
-![GitHub last commit](https://img.shields.io/github/last-commit/vovamod/DDS-to-PNG)
+![GitHub repo size](https://img.shields.io/github/repo-size/vovamod/DDS-converter)
+![GitHub](https://img.shields.io/github/license/vovamod/DDS-converter)
+![GitHub last commit](https://img.shields.io/github/last-commit/vovamod/DDS-converter)
 ## Features
 
 * Automatic folder generaion
