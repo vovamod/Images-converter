@@ -1,3 +1,4 @@
+# Importing modules
 import os
 from time import sleep as w
 from os import listdir as ld
@@ -7,13 +8,17 @@ from progress.bar import Bar
 import cfg as c
 
 
-class Main:
+# Creating class Converter
+class Converter:
+
+    # Initializing variables and directories locations
     def __init__(self):
         self.in_dir = (str(os.getcwd()) + f'/{c.dir_1}/')
         self.ou_dir = (str(os.getcwd()) + f'/{c.dir_2}/')
         self.error_list = []
         Main.dir_check(self)
 
+    # Checking if directory exist, if not creating one and looking for files with specific format from cfg.py "ft_1" (filetype_1)
     def dir_check(self):
         try:
             os.mkdir(c.dir_1)
@@ -25,9 +30,10 @@ class Main:
             pass
         raw_files = [f for f in ld(self.in_dir) if isfile(join(self.in_dir, f))]
         files = [x for x in raw_files if c.ft_1 in x]
-        Main.dds_convert(self, self.in_dir, self.ou_dir, files)
+        Main.convert(self, self.in_dir, self.ou_dir, files)
 
-    def dds_convert(self, io, ou, f):
+    # Launching bar. Looking if directory is empty. If yes, notifying user and closing program. Otherwise, converting file from format a to b
+    def convert(self, io, ou, f):
         bar = Bar('Processing', max=len(f))
         if len(f) == 0:
             print('EXCEPTION\nFolder DDS is empty, no DDS files were found!')
@@ -42,7 +48,6 @@ class Main:
                         img.save(path_2.replace(c.ft_1, "") + c.ft_2)
                         img.close()
                         bar.next()
-                        # os.remove(path_1)
                 except:
                     self.error_list.append(path_1)
                     bar.next()
@@ -50,14 +55,15 @@ class Main:
         bar.finish()
         Main.error_check(self, f)
 
+    # Performing error check if any were found during converting and notifying user with list of files which were not converted properly due to some unknown error
     def error_check(self, files):
         if len(self.error_list) > 0:
             print(f"Amount of errors while trying to convert files is {len(self.error_list)} out of {len(files)}\nMaybe files were corrupted or unsupported compression type was detected\nList of files which were not converted:")
             print(*self.error_list, sep='\n')
-
         else:
             pass
 
 
+# Run the script
 if __name__ == "__main__":
-    Main()
+    Converter()
