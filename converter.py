@@ -62,6 +62,7 @@ class Converter:
             print(*self.error_list, sep='\n')
         else:
             pass
+        input("Press any key to close application...")
 
 
 # Run the script
