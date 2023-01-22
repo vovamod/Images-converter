@@ -52,10 +52,10 @@ class Converter:
                     bar.next()
                     pass
         bar.finish()
-        Converter.error_check(self, f)
+        Converter.error_check(self)
 
     # Performing error check if any were found during converting and notifying user with list of files which were not converted properly due to some unknown error
-    def error_check(self, files):
+    def error_check(self):
         if len(self.error_list) > 0:
             print(f"\nAmount of errors while trying to convert files is {len(self.error_list)}\nMaybe files were corrupted or unsupported compression type was detected\nList of files which were not converted:")
             print(*self.error_list, sep='\n')
