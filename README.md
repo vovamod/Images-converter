@@ -1,5 +1,5 @@
 # Image converter
-### Created by vovamod. Fully automated converter from DDS to PNG files
+### Created by vovamod. Fully automated and configurable converter
 
 ---
 ![GitHub repo size](https://img.shields.io/github/repo-size/vovamod/DDS-converter)
