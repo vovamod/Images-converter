@@ -1,5 +1,5 @@
-# Image converter
-### Created by vovamod. Fully automated and configurable converter
+# DDS converter
+### Created by vovamod. Fully automated and configurable converter of DDS file format
 
 ---
 ![GitHub repo size](https://img.shields.io/github/repo-size/vovamod/DDS-converter)
