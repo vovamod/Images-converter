@@ -1,4 +1,4 @@
-# DDS converter
+# Image converter
 ### Created by vovamod. Fully automated converter from DDS to PNG files
 
 ---
