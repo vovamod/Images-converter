@@ -2,7 +2,7 @@
 # Ver: 2.2
 
 # Directory where the files that needed to be converted are stored. Default: "DDS"
-input_dir: DDS
+input_dir: Input
 
 # Directory where files that was converted will be stored. Default: "PNG"
 output_dir: PNG
