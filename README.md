@@ -1,16 +1,15 @@
-# DDS converter
-### Created by vovamod. Fully automated and configurable converter of DDS file format
+# Images converter
+### Created by vovamod. Fully automated and configurable converter of any image file format
 
 ---
-![GitHub repo size](https://img.shields.io/github/repo-size/vovamod/DDS-converter)
-![GitHub](https://img.shields.io/github/license/vovamod/DDS-converter)
-![GitHub last commit](https://img.shields.io/github/last-commit/vovamod/DDS-converter)
+![GitHub repo size](https://img.shields.io/github/repo-size/vovamod/Images-converter)
+![GitHub](https://img.shields.io/github/license/vovamod/Images-converter)
+![GitHub last commit](https://img.shields.io/github/last-commit/vovamod/Images-converter)
 ## Features
 
 * Automatic folder generaion
-* 100% conversation of files to PNG/BMP/BLP/DIB/EPS/TIFF/PPM/JPEG format (can be setuped in cfg.py)
+* 100% conversation of files to PNG/BMP/BLP/DIB/EPS/TIFF/PPM/JPEG/DDS format (can be setuped in config.yml)
 * Manageable code for personal use
-* Sub version with multiprocessing (will be available soon)
 
 
 Installation
@@ -21,6 +20,6 @@ Installation
 
 Usage
 ---
-* Create a folder named "DDS" (or any other which you will use for file conversion) right next to converter.py
+* Create a folder named "Input" (or any other which you will use for file conversion) right next to converter.py
 * Then put all of the files that you want to convert in that folder
 * Launch converter.py and wait (you will see progress bar which will tell you when the process is done)
