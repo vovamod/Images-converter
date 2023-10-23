@@ -1,70 +1,83 @@
-# Importing modules
 import os
-from time import sleep as w
-from os import listdir as ld
-from os.path import isfile, join
+from os import listdir
+from pathlib import Path
 from PIL import Image
-from progress.bar import Bar
-import cfg as c
+from tqdm import tqdm
+import concurrent.futures
+import yaml
+
+def load_config():
+    with open('config.yml', 'r') as file:
+        config = yaml.safe_load(file)
+    return config
+
+config = load_config()
+input_dir = config['input_dir']
+output_dir = config['output_dir']
+input_file_format = config['input_file_format']
+output_file_format = config['output_file_format']
 
 
-# Creating class Converter
 class Converter:
+    """
+    This class converts files from one format to another.
+    """
 
-    # Initializing variables and directories locations
     def __init__(self):
-        self.in_dir = (str(os.getcwd()) + f'/{c.dir_1}/')
-        self.ou_dir = (str(os.getcwd()) + f'/{c.dir_2}/')
+        """
+        Initializes variables and directories locations.
+        """
+        self.input_directory = Path.cwd() / input_dir
+        self.output_directory = Path.cwd() / output_dir
         self.error_list = []
 
-    # Checking if directory exist, if not creating one and looking for files with specific format from cfg.py "ft_1" (filetype_1)
     def dir_check(self):
-        try:
-            os.mkdir(c.dir_1)
-        except FileExistsError:
-            pass
-        try:
-            os.mkdir(c.dir_2)
-        except FileExistsError:
-            pass
-        raw_files = [f for f in ld(self.in_dir) if isfile(join(self.in_dir, f))]
-        files = [x for x in raw_files if c.ft_1 in x]
-        Converter.convert(self, self.in_dir, self.ou_dir, files)
+        """
+        Checks if directory exists, if not creates one and looks for files with specific format from config.yml "ft_1" (filetype_1).
+        """
+        self.input_directory.mkdir(parents=True, exist_ok=True)
+        self.output_directory.mkdir(parents=True, exist_ok=True)
+        files = [f for f in self.input_directory.iterdir() if f.is_file() and input_file_format in f.name]
+        self.convert(files)
 
-    # Launching bar. Looking if directory is empty. If yes, notifying user and closing program. Otherwise, converting file from format a to b
-    def convert(self, io, ou, f):
-        bar = Bar('Processing', max=len(f))
-        if len(f) == 0:
-            print('EXCEPTION\nFolder DDS is empty, no DDS files were found!')
-            w(5)
+    def convert_file(self, file_path, output_directory):
+        """
+        Convert file function, gets a file location and make a img var from PIL Image module then convert it
+        """
+        try:
+            with Image.open(file_path) as img:
+                img.load()
+                file_name = os.path.basename(file_path).replace(input_file_format, output_file_format)
+                output_path = os.path.join(output_directory, file_name)
+                img.save(output_path)
+        except (IOError, OSError) as e:
+            self.error_list.append(file_path)
+            print(f"Error converting {file_path}: {str(e)}")
+
+    def convert(self, files):
+        """
+        Convert function which will call convert_file and use multiple threads in System which are available
+        """
+        if len(files) == 0:
+            print(f'\nEXCEPTION!!!\n\nFolder {input_dir} is empty, no {input_file_format} files were found!')
         else:
-            for convert_f in f:
-                path_1 = io + convert_f
-                path_2 = ou + convert_f
-                try:
-                    with Image.open(path_1) as img:
-                        img.load()
-                        img.save(path_2.replace(c.ft_1, "") + c.ft_2)
-                        img.close()
-                        bar.next()
-                except:
-                    self.error_list.append(path_1)
-                    bar.next()
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                futures = [executor.submit(self.convert_file, os.path.join(self.input_directory, file), self.output_directory) for file in files]
+                for _ in tqdm(concurrent.futures.as_completed(futures), desc='Converting', unit='files', total=len(futures)):
                     pass
-        bar.finish()
-        Converter.error_check(self)
+        self.error_check()
 
-    # Performing error check if any were found during converting and notifying user with list of files which were not converted properly due to some unknown error
     def error_check(self):
+        """
+        Performs error check if any were found during converting and notifies user with list of files which were not converted properly due to some unknown error.
+        """
         if len(self.error_list) > 0:
-            print(f"\nAmount of errors while trying to convert files is {len(self.error_list)}\nMaybe files were corrupted or unsupported compression type was detected\nList of files which were not converted:")
+            print(f"\nAmount of errors while trying to convert files is {len(self.error_list)}\n"
+                  f"List of files which were not converted:")
             print(*self.error_list, sep='\n')
-        else:
-            pass
         input("\nPress any key to close application...")
 
 
-# Run the script
 if __name__ == "__main__":
     main = Converter()
     main.dir_check()

@@ -1,14 +1,14 @@
 # Config for DDS converter
-# Ver: 2.1a2
+# Ver: 2.2
 
 # Directory where the files that needed to be converted are stored. Default: "DDS"
-dir_1 = "DDS"
+input_dir: DDS
 
 # Directory where files that was converted will be stored. Default: "PNG"
-dir_2 = "PNG"
+output_dir: PNG
 
 # File format of files that needed to be converted
-ft_1 = ".dds"
+input_file_format: .dds
 
 # File format of files that will be converted
-ft_2 = ".png"
+output_file_format: .png
